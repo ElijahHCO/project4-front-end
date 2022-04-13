@@ -1,0 +1,155 @@
+* {
+    background-color: rgba(206, 214, 198, 0.904);
+    
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.App {
+    background-color: rgba(206, 214, 198, 0.904);
+    padding: 1em;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: black;
+    color: rgb(255, 253, 250);
+    border: none;
+    border-radius: 1em;
+}
+.nav-links {
+    background-color: black;
+    width: 10em;
+    display:flex;
+    align-items: center;
+    color: rgb(255, 253, 250);
+    cursor: pointer;
+}
+
+nav h3 {
+    background-color: black;
+    color: rgb(255, 253, 250);
+}
+
+nav li {
+    background-color: black;
+    list-style: none;
+    padding: 1em;
+}
+.logo{
+    margin: 0;
+}
+.container {
+    padding: 2em;
+    margin: 4em;
+}
+
+.Header {
+    text-align: center;
+    background-color: black;
+    color: rgb(255, 253, 250);
+    padding: .5em;
+    border:none;
+    border-radius: 1em;
+    margin: .5em;
+}
+
+.header-two {
+    text-align: center;
+    margin: 1em;
+}
+
+.add-equip-btn {
+    width: 160px;
+    background-color: black;
+    color: rgb(255, 253, 250);
+    text-align: center;
+    padding: .8em;
+    border-radius: 1em;
+    margin-right: 3rem;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-edit-btn {
+    background-color: black;
+    color: rgb(255, 253, 250);
+    border: none;
+    border-radius: .5em;
+    margin: .5em;
+    cursor: pointer;
+}
+
+.x-btn {
+    background-color: black;
+    color: rgb(255, 253, 250);
+    border: none;
+    border-radius: 1em;
+    padding: 1em;
+    cursor: pointer;
+}
+
+#edit-item-form{
+    display: flex;
+    flex-direction: column;
+}
+
+#new-item-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:left;
+    padding: .5em;
+    margin: 0 auto;
+    background-color: black;
+    color: rgb(255, 253, 250);
+    border: none;
+    border-radius: .5em;
+}
+
+input{
+    margin: .5em;
+    border-radius: .5em;
+    padding: .8em;
+}
+
+.snowboard-header {
+    text-align: center;
+}
+.ski-header {
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    background-color: black;
+    color: rgb(255, 253, 250);
+    padding: 1em;
+    border: none;
+    border-radius: 1em;
+    margin: .5em;
+    bottom: 0; 
+}
+
+#ski-img {
+    max-height: 4em;
+    max-height: auto;
+}
+
+#snow-img {
+    max-height: 4em;
+    max-height: auto;
+}
+
+a{
+    background-color: black;
+}
