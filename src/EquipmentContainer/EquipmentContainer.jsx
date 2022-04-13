@@ -92,6 +92,4 @@ const EquipmentContainer = () => {
 }
 
 
-
-
 export default EquipmentContainer;
