@@ -17,7 +17,7 @@ const SkiContainer = () => {
             const parsedResponse = await apiResponse.json()
             const newSkis = parsedResponse.data
             console.log(parsedResponse)
-            if (parsedResponse.ok == true) {
+            if (parsedResponse.ok === true) {
                 setSkis([newSkis, ...skis])
                 console.log(skis)
             } else {
@@ -34,7 +34,7 @@ const SkiContainer = () => {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok == true) {
+            if (parsedResponse.ok === true) {
                 const newSkis = skis.filter(skis => skis.id !== idToDelete)
                 setSkis(newSkis)
             } else {
@@ -48,7 +48,7 @@ const SkiContainer = () => {
     }
     const getSkis = async () => {
         try {
-            const skis = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/ski', {
+            const skis = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -71,7 +71,7 @@ const SkiContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if(parsedResponse.ok == true){
+            if(parsedResponse.ok === true){
                 const newSkis = skis.map(skis => skis.id === idToUpdate ? skisToUpdate : skis)
                 setSkis(newSkis)
             }else{

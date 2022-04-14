@@ -11,6 +11,8 @@ const NewSkiComponent = (props) => {
         brand: "",
         model: "",
         quantity: 0,
+        rented: 0,
+        location: ""
     })
     const handleInputChange = (e) => {
         console.log(e.target.value)
@@ -27,7 +29,9 @@ const NewSkiComponent = (props) => {
             type: "Ski",
             brand: "",
             model: "",
-            quantity: 0
+            quantity: 0,
+            rented: 0,
+            location: ""
         })
         setIsValidState({
             valid: true,

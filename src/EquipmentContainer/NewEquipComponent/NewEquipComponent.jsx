@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const NewEquipComponent = (props) => {
     const [showing, setShowing] = useState(false)
     const toggleShowing = () => {
@@ -11,8 +12,8 @@ const NewEquipComponent = (props) => {
         brand: "",
         model: "",
         quantity: 0,
-        rented: null,
-        location: null
+        rented: 0,
+        location: []
     })
     const handleInputChange = (e) => {
         console.log(e.target.value)
@@ -38,8 +39,8 @@ const NewEquipComponent = (props) => {
                 brand: "",
                 model: "",
                 quantity: 0,
-                rented: null,
-                location: null
+                rented: 0,
+                location: []
             })
             setIsValidState({
                 valid: true,

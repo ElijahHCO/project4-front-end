@@ -17,7 +17,7 @@ const SnowboardContainer = () => {
             const parsedResponse = await apiResponse.json()
             const newSnows = parsedResponse.data
             console.log(parsedResponse)
-            if (parsedResponse.success) {
+            if (parsedResponse.ok === true) {
                 setSnows([newSnows, ...snows])
                 console.log(snows)
             } else {
@@ -30,11 +30,11 @@ const SnowboardContainer = () => {
     }
     const deleteSnows = async (idToDelete) => {
         try {
-            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/api/equipment/${idToDelete}`, {
+            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok == true) {
+            if (parsedResponse.ok === true) {
                 const newSnows = snows.filter(snows => snows.id !== idToDelete)
                 setSnows(newSnows)
             } else {
@@ -48,7 +48,7 @@ const SnowboardContainer = () => {
     }
     const getSnows = async () => {
         try {
-            const snows = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/snowboard', {
+            const snows = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/snowboard/', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -71,7 +71,7 @@ const SnowboardContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if(parsedResponse.ok == true){
+            if(parsedResponse.ok === true){
                 const newSnows = snows.map(snows => snows.id === idToUpdate ? snowsToUpdate : snows)
                 setSnows(newSnows)
             }else{
