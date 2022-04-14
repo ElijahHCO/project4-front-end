@@ -5,7 +5,18 @@ import SingleEquipComponent from './SingleEquipComponent.jsx/SingleEquipComponen
 
 const EquipmentContainer = () => {
     const [equips, setEquips] = useState([])
+    const [locations, setLocations] = useState([])
     const [newEquipServerError, setNewEquipServerError] = useState("")
+    const getLocations = async () => {
+        try {
+            const locations = await fetch('http://obscure-caverns-42640.herokuapp.com/locations/')
+            const parsedLocations = await locations.json();
+            setLocations(parsedLocations)
+            console.log(parsedLocations)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     const createNewEquip = async (newEquip) => {
         try {
             const apiResponse = await fetch("http://obscure-caverns-42640.herokuapp.com/equipment/", {
@@ -17,7 +28,8 @@ const EquipmentContainer = () => {
             })
             const parsedResponse = await apiResponse.json()
             console.log(parsedResponse)
-            if (parsedResponse.ok === true) {
+            console.log(apiResponse)
+            if (apiResponse.ok == true) {
                 setEquips([parsedResponse, ...equips])
             } else {
                 setNewEquipServerError(parsedResponse)
@@ -31,14 +43,13 @@ const EquipmentContainer = () => {
             const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
-            const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok === true) {
+            console.log(apiResponse, "apiResponse")
+            if (apiResponse.ok === true) {
                 const newEquips = equips.filter(equip => equip.id !== idToDelete)
                 setEquips(newEquips)
             } else {
 
             }
-            console.log(parsedResponse)
         } catch (err) {
             console.log(err)
         }
@@ -64,7 +75,7 @@ const EquipmentContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if (parsedResponse.ok === true) {
+            if (apiResponse.ok === true) {
                 const newEquips = equips.map(equip => equip.id === idToUpdate ? equipToUpdate : equip)
                 setEquips(newEquips)
             } else {
@@ -75,7 +86,7 @@ const EquipmentContainer = () => {
         }
     }
     useEffect(() => {
-        getEquips()
+        getEquips(); getLocations()
     }, [])
     return (
         <div className="container-div">
@@ -83,7 +94,7 @@ const EquipmentContainer = () => {
             <div className="display-div">
                 <NewEquipComponent
                     newEquipServerError={newEquipServerError}
-                    createNewEquip={createNewEquip}></NewEquipComponent>
+                    createNewEquip={createNewEquip} locations={locations}></NewEquipComponent>
                 {equips.length > 0 ? equips.reverse().map((equip) => {
                     return <SingleEquipComponent key={equip._id} equip={equip} deleteEquip={deleteEquip} updateEquip={updateEquip}></SingleEquipComponent>
                 }) : null}

@@ -111,7 +111,7 @@ nav li {
     padding: .5em;
     margin: 0 auto;
     background-color: black;
-    color: rgb(255, 253, 250);
+    /* color: rgb(255, 253, 250); */
     border: none;
     border-radius: .5em;
 }
@@ -152,4 +152,8 @@ input{
 
 a{
     background-color: black;
+}
+
+select {
+    color: black;
 }

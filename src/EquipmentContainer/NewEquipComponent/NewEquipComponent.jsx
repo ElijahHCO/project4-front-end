@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 
+
 const NewEquipComponent = (props) => {
     const [showing, setShowing] = useState(false)
     const toggleShowing = () => {
@@ -13,7 +14,7 @@ const NewEquipComponent = (props) => {
         model: "",
         quantity: 0,
         rented: 0,
-        location: []
+        location: "",
     })
     const handleInputChange = (e) => {
         console.log(e.target.value)
@@ -40,7 +41,7 @@ const NewEquipComponent = (props) => {
                 model: "",
                 quantity: 0,
                 rented: 0,
-                location: []
+                location: ""
             })
             setIsValidState({
                 valid: true,
@@ -49,7 +50,7 @@ const NewEquipComponent = (props) => {
             setShowing(false)
         }
     }
-
+    console.log(props.locations, "locations")
     return (
         <>
             {
@@ -66,6 +67,17 @@ const NewEquipComponent = (props) => {
                             Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
                             Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={newEquip.quantity}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>
