@@ -7,8 +7,8 @@ const SingleSnowboardComponent = (props) => {
     }
     const [updateSnow, setUpdateSnow] = useState({
         type: "Snowboard",
-        productBrand: props.snows.productBrand,
-        productModel: props.snows.productModel,
+        brand: props.snows.brand,
+        model: props.snows.model,
         quantity: props.snows.quantity,
         rented: props.snows.rented,
         _id: props.snows._id 
@@ -28,8 +28,8 @@ const SingleSnowboardComponent = (props) => {
 
     return (
         <div className="index-single-item">
-            <h2>{props.snows.productBrand}</h2>
-            <h3>{props.snows.productModel}</h3>
+            <h2>{props.snows.brand}</h2>
+            <h3>{props.snows.model}</h3>
             {props.snows.quantity > 0
                 ?
                 <div className="index-single-item-details">
@@ -56,8 +56,8 @@ const SingleSnowboardComponent = (props) => {
                         <button className="x-btn" onClick={toggleShowing}>X</button>
                         </div>
                         <form className="form" onSubmit={submitUpdateSnow}>
-                            Brand: <input onChange={handleInputChange} type="text" name="productBrand" value={updateSnow.productBrand} />
-                            Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateSnow.productModel} />
+                            Brand: <input onChange={handleInputChange} type="text" name="brand" value={updateSnow.brand} />
+                            Model: <input onChange={handleInputChange} type="text" name="model" value={updateSnow.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSnow.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSnow.rented}/>
                             <button className="delete-edit-btn" type="submit">Submit</button>

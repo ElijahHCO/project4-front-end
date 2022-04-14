@@ -8,8 +8,8 @@ const SingleSkiComponent = (props) => {
     }
     const [updateSki, setUpdateSki] = useState({
         type: "Ski",
-        productBrand: props.skis.productBrand,
-        productModel: props.skis.productModel,
+        brand: props.skis.brand,
+        model: props.skis.model,
         quantity: props.skis.quantity,
         rented: props.skis.rented,
         _id: props.skis._id
@@ -29,8 +29,8 @@ const SingleSkiComponent = (props) => {
 
     return (
         <div className="index-single-item">
-            <h2>{props.skis.productBrand}</h2>
-            <h3>{props.skis.productModel}</h3>
+            <h2>{props.skis.brand}</h2>
+            <h3>{props.skis.model}</h3>
             {props.skis.quantity > 0
                 ?
                 <div className="index-single-item-details">
@@ -58,8 +58,8 @@ const SingleSkiComponent = (props) => {
                         </div>
                         <form className="form" onSubmit={submitUpdateSki}>
                             {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
-                            Brand: <input onChange={handleInputChange} type="text" name="productBrand" value={updateSki.productBrand} />
-                            Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateSki.productModel} />
+                            Brand: <input onChange={handleInputChange} type="text" name="productBrand" value={updateSki.brand} />
+                            Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateSki.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSki.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSki.rented} />
                             <button className="delete-edit-btn" type="submit">Submit</button>

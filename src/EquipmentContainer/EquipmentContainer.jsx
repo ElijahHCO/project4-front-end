@@ -8,7 +8,7 @@ const EquipmentContainer = () => {
     const [newEquipServerError, setNewEquipServerError] = useState("")
     const createNewEquip = async (newEquip) => {
         try {
-            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment", {
+            const apiResponse = await fetch("http://obscure-caverns-42640.herokuapp.com/equipment/", {
                 method: "POST",
                 body: JSON.stringify(newEquip),
                 headers: {
@@ -17,10 +17,10 @@ const EquipmentContainer = () => {
             })
             const parsedResponse = await apiResponse.json()
             console.log(parsedResponse)
-            if (parsedResponse.success) {
-                setEquips([parsedResponse.data, ...equips])
+            if (parsedResponse.ok == true) {
+                setEquips([parsedResponse, ...equips])
             } else {
-                setNewEquipServerError(parsedResponse.data)
+                setNewEquipServerError(parsedResponse)
             }
         } catch (err) {
             console.log(err)
@@ -28,11 +28,11 @@ const EquipmentContainer = () => {
     }
     const deleteEquip = async (idToDelete) => {
         try {
-            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
+            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.success) {
+            if (parsedResponse.ok == true) {
                 const newEquips = equips.filter(equip => equip._id !== idToDelete)
                 setEquips(newEquips)
             } else {
@@ -46,16 +46,17 @@ const EquipmentContainer = () => {
     }
     const getEquips = async () => {
         try {
-            const equips = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment')
+            const equips = await fetch('http://obscure-caverns-42640.herokuapp.com/equipment/')
             const parsedEquips = await equips.json();
-            setEquips(parsedEquips.data)
+            setEquips(parsedEquips)
+            console.log(parsedEquips)
         } catch (err) {
             console.log(err)
         }
     }
     const updateEquip = async (idToUpdate, equipToUpdate) => {
         try {
-            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToUpdate}`, {
+            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToUpdate}`, {
                 method: "PUT",
                 body: JSON.stringify(equipToUpdate),
                 headers: {
@@ -63,8 +64,8 @@ const EquipmentContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if (parsedResponse.success) {
-                const newEquips = equips.map(equip => equip._id === idToUpdate ? equipToUpdate : equip)
+            if (apiResponse.ok == true) {
+                const newEquips = equips.map(equip => equip.id === idToUpdate ? equipToUpdate : equip)
                 setEquips(newEquips)
             } else {
 
@@ -83,9 +84,9 @@ const EquipmentContainer = () => {
                 <NewEquipComponent
                     newEquipServerError={newEquipServerError}
                     createNewEquip={createNewEquip}></NewEquipComponent>
-                {equips.reverse().map((equip) => {
+                {equips.length > 0 ? equips.reverse().map((equip) => {
                     return <SingleEquipComponent key={equip._id} equip={equip} deleteEquip={deleteEquip} updateEquip={updateEquip}></SingleEquipComponent>
-                })}
+                }) : null}
             </div>
         </div>
     )

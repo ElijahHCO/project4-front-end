@@ -8,8 +8,8 @@ const NewEquipComponent = (props) => {
     const [isValidState, setIsValidState] = useState({ valid: true, message: "" })
     const [newEquip, setNewEquip] = useState({
         type: "",
-        productBrand: "",
-        productModel: "",
+        brand: "",
+        model: "",
         quantity: 0,
     })
     const handleInputChange = (e) => {
@@ -22,7 +22,7 @@ const NewEquipComponent = (props) => {
     const submitNewEquip = (e) => {
         e.preventDefault()
         let validSubmission = true;
-        if (newEquip.productBrand.length < 2) {
+        if (newEquip.brand.length < 2) {
             setIsValidState({
                 valid: false,
                 message: "Name needs to be longer"
@@ -33,8 +33,8 @@ const NewEquipComponent = (props) => {
             props.createNewEquip(newEquip)
             setNewEquip({
                 type: "",
-                productBrand: "",
-                productModel: "",
+                brand: "",
+                model: "",
                 quantity: 0
             })
             setIsValidState({
@@ -58,16 +58,18 @@ const NewEquipComponent = (props) => {
                             {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
                             {props.NewItemServerError ? <p className="form-error">{props.newItemServerError}</p> : null}
                             Type: <input onChange={handleInputChange} type="text" name="type" value={newEquip.type} />
-                            Brand: <input onChange={handleInputChange} type="text" name="productBrand" value={newEquip.productBrand} />
-                            Model: <input onChange={handleInputChange} type="text" name="productModel" value={newEquip.productModel} />
+                            Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
+                            Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>
                     :
-                    // <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
-                    <h3>All Equipment</h3>
+
+                    <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
             }
+                    <h3>All Equipment</h3>
+            
         </>
     )
 }

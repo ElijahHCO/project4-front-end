@@ -8,8 +8,8 @@ const NewSkiComponent = (props) => {
     const [isValidState, setIsValidState] = useState({ valid: true, message: "" })
     const [newSki, setNewSki] = useState({
         type: "Ski",
-        productBrand: "",
-        productModel: "",
+        brand: "",
+        model: "",
         quantity: 0,
     })
     const handleInputChange = (e) => {
@@ -25,8 +25,8 @@ const NewSkiComponent = (props) => {
         console.log("working", props.createNewSki)
         setNewSki({
             type: "Ski",
-            productBrand: "",
-            productModel: "",
+            brand: "",
+            model: "",
             quantity: 0
         })
         setIsValidState({
@@ -48,8 +48,8 @@ const NewSkiComponent = (props) => {
                         <form className="form" onSubmit={(e) => submitNewSki(e)}>
                             {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
                             {props.NewItemServerError ? <p className="form-error">{props.newItemServerError}</p> : null}
-                            Brand: <input onChange={handleInputChange} required min="2" type="text" name="productBrand" value={newSki.productBrand} />
-                            Model: <input onChange={handleInputChange} required min="2" type="text" name="productModel" value={newSki.productModel} />
+                            Brand: <input onChange={handleInputChange} required min="2" type="text" name="brand" value={newSki.brand} />
+                            Model: <input onChange={handleInputChange} required min="2" type="text" name="model" value={newSki.model} />
                             Quantity: <input onChange={handleInputChange} required type="number" name="quantity" value={newSki.quantity} />
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>

@@ -7,7 +7,7 @@ const SnowboardContainer = () => {
     const [newSnowServerError, setNewSnowServerError] = useState("")
     const createNewSnow = async (newSnow) => {
         try{
-            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment", {
+            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment/", {
                 method: "POST",
                 body: JSON.stringify(newSnow),
                 headers: {
@@ -34,8 +34,8 @@ const SnowboardContainer = () => {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.success) {
-                const newSnows = snows.filter(snows => snows._id !== idToDelete)
+            if (parsedResponse.ok == true) {
+                const newSnows = snows.filter(snows => snows.id !== idToDelete)
                 setSnows(newSnows)
             } else {
                
@@ -56,7 +56,7 @@ const SnowboardContainer = () => {
             })
             const parsedSnows = await snows.json();
             console.log(parsedSnows)
-            setSnows(parsedSnows.data)
+            setSnows(parsedSnows)
         } catch (err) {
             
         }
@@ -71,8 +71,8 @@ const SnowboardContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if(parsedResponse.success){
-                const newSnows = snows.map(snows => snows._id === idToUpdate ? snowsToUpdate : snows)
+            if(parsedResponse.ok == true){
+                const newSnows = snows.map(snows => snows.id === idToUpdate ? snowsToUpdate : snows)
                 setSnows(newSnows)
             }else{
         
@@ -92,7 +92,7 @@ const SnowboardContainer = () => {
                 newSnowServerError={newSnowServerError}
                 createNewSnow={createNewSnow}></NewSnowboardComponent>
             {snows.map((snows) => {
-                return <SingleSnowboardComponent key={snows._id} snows={snows} deleteSnows={deleteSnows} updateSnow={updateSnow}></SingleSnowboardComponent>
+                return <SingleSnowboardComponent key={snows.id} snows={snows} deleteSnows={deleteSnows} updateSnow={updateSnow}></SingleSnowboardComponent>
             })}
             </div>
         </div>

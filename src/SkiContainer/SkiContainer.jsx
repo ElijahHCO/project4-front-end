@@ -7,7 +7,7 @@ const SkiContainer = () => {
     const [newSkiServerError, setNewSkiServerError] = useState("")
     const createNewSki = async (newSki) => {
         try{
-            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment", {
+            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment/", {
                 method: "POST",
                 body: JSON.stringify(newSki),
                 headers: {
@@ -17,7 +17,7 @@ const SkiContainer = () => {
             const parsedResponse = await apiResponse.json()
             const newSkis = parsedResponse.data
             console.log(parsedResponse)
-            if (parsedResponse.success) {
+            if (parsedResponse.ok == true) {
                 setSkis([newSkis, ...skis])
                 console.log(skis)
             } else {
@@ -34,8 +34,8 @@ const SkiContainer = () => {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.success) {
-                const newSkis = skis.filter(skis => skis._id !== idToDelete)
+            if (parsedResponse.ok == true) {
+                const newSkis = skis.filter(skis => skis.id !== idToDelete)
                 setSkis(newSkis)
             } else {
                
@@ -56,7 +56,7 @@ const SkiContainer = () => {
             })
             const parsedSkis = await skis.json();
             console.log(parsedSkis)
-            setSkis(parsedSkis.data)
+            setSkis(parsedSkis)
         } catch (err) {
             
         }
@@ -71,8 +71,8 @@ const SkiContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if(parsedResponse.success){
-                const newSkis = skis.map(skis => skis._id === idToUpdate ? skisToUpdate : skis)
+            if(parsedResponse.ok == true){
+                const newSkis = skis.map(skis => skis.id === idToUpdate ? skisToUpdate : skis)
                 setSkis(newSkis)
             }else{
         
@@ -92,7 +92,7 @@ const SkiContainer = () => {
                 newSkiServerError={newSkiServerError}
                 createNewSki={createNewSki}></NewSkiComponent>
             {skis.map((skis) => {
-                return <SingleSkiComponent key={skis._id} skis={skis} deleteSkis={deleteSkis} updateSki={updateSki}></SingleSkiComponent>
+                return <SingleSkiComponent key={skis.id} skis={skis} deleteSkis={deleteSkis} updateSki={updateSki}></SingleSkiComponent>
             })}
             </div>
         </div>
