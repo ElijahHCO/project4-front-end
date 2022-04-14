@@ -17,7 +17,7 @@ const EquipmentContainer = () => {
             })
             const parsedResponse = await apiResponse.json()
             console.log(parsedResponse)
-            if (parsedResponse.ok == true) {
+            if (parsedResponse.ok === true) {
                 setEquips([parsedResponse, ...equips])
             } else {
                 setNewEquipServerError(parsedResponse)
@@ -32,8 +32,8 @@ const EquipmentContainer = () => {
                 method: "DELETE"
             })
             const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok == true) {
-                const newEquips = equips.filter(equip => equip._id !== idToDelete)
+            if (parsedResponse.ok === true) {
+                const newEquips = equips.filter(equip => equip.id !== idToDelete)
                 setEquips(newEquips)
             } else {
 
@@ -64,7 +64,7 @@ const EquipmentContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if (apiResponse.ok == true) {
+            if (parsedResponse.ok === true) {
                 const newEquips = equips.map(equip => equip.id === idToUpdate ? equipToUpdate : equip)
                 setEquips(newEquips)
             } else {

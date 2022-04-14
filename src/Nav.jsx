@@ -8,6 +8,9 @@ function Nav() {
             <Link to="/">
                 <h3 className="logo">Home</h3>
             </Link>
+            <Link to="/locations">
+                <h3 className="logo">Locations</h3>
+            </Link>
             <ul className="nav-links">
                 <Link to="/ski">
                     <img src="skis-min.jpeg" alt="" id="ski-img" />

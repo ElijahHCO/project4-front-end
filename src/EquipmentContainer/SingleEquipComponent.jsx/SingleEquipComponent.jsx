@@ -49,7 +49,7 @@ const SingleEquipComponent = (props) => {
                 <p>Currently Rented: 0</p>
             }
             <button className="delete-edit-btn" onClick={() => {
-                props.deleteEquip(props.equip._id)
+                props.deleteEquip(props.equip.id)
             }}>Delete</button>
             {
                 showing ?

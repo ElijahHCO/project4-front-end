@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 
-const NewEquipComponent = (props) => {
+const NewLocationComponent = (props) => {
     const [showing, setShowing] = useState(false)
     const toggleShowing = () => {
         setShowing(!showing)
     }
     const [isValidState, setIsValidState] = useState({ valid: true, message: "" })
-    const [newEquip, setNewEquip] = useState({
-        type: "",
-        brand: "",
-        model: "",
-        quantity: 0,
-        rented: null,
-        location: null
+    const [newLocation, setNewLocation] = useState({
+        name: "",
+        address: "",
     })
     const handleInputChange = (e) => {
         console.log(e.target.value)
-        setNewEquip({
-            ...newEquip,
+        setNewLocation({
+            ...newLocation,
             [e.target.name]: e.target.value
         })
     }
-    const submitNewEquip = (e) => {
+    const submitNewLocation = (e) => {
         e.preventDefault()
         let validSubmission = true;
-        if (newEquip.brand.length < 2) {
+        if (newLocation.name.length < 2) {
             setIsValidState({
                 valid: false,
                 message: "Name needs to be longer"
@@ -32,14 +28,10 @@ const NewEquipComponent = (props) => {
             validSubmission = false;
         }
         if (validSubmission) {
-            props.createNewEquip(newEquip)
-            setNewEquip({
-                type: "",
-                brand: "",
-                model: "",
-                quantity: 0,
-                rented: null,
-                location: null
+            props.createNewLocation(newLocation)
+            setNewLocation({
+                name: "",
+                address: "",
             })
             setIsValidState({
                 valid: true,
@@ -58,24 +50,22 @@ const NewEquipComponent = (props) => {
                         <div className="btn-div">
                             <button className="x-btn" onClick={toggleShowing}>X</button>
                         </div>
-                        <form className="form" onSubmit={submitNewEquip}>
+                        <form className="form" onSubmit={submitNewLocation}>
                             {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
                             {props.NewItemServerError ? <p className="form-error">{props.newItemServerError}</p> : null}
-                            Type: <input onChange={handleInputChange} type="text" name="type" value={newEquip.type} />
-                            Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
-                            Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
-                            Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
+                            Name: <input onChange={handleInputChange} type="text" name="name" value={newLocation.name} />
+                            Address: <input onChange={handleInputChange} type="text" name="address" value={newLocation.address} />
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>
                     :
 
-                    <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
+                    <button onClick={toggleShowing} className="add-equip-btn">Add Location</button>
             }
-                    <h3>All Equipment</h3>
+                    <h3>All Locations</h3>
             
         </>
     )
 }
 
-export default NewEquipComponent
+export default NewLocationComponent
