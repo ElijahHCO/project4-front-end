@@ -15,13 +15,12 @@ const SnowboardContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json()
-            const newSnows = parsedResponse.data
-            console.log(parsedResponse)
-            if (parsedResponse.ok === true) {
+            const newSnows = parsedResponse
+            if (apiResponse.ok === true) {
                 setSnows([newSnows, ...snows])
                 console.log(snows)
             } else {
-                setNewSnowServerError(parsedResponse.data)
+                setNewSnowServerError(parsedResponse)
                 console.log(parsedResponse)
             }
         }catch(err){
@@ -33,14 +32,12 @@ const SnowboardContainer = () => {
             const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
-            const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok === true) {
+            if (apiResponse.ok === true) {
                 const newSnows = snows.filter(snows => snows.id !== idToDelete)
                 setSnows(newSnows)
             } else {
                
             }
-            console.log(parsedResponse)
         } catch (err) {
            console.log(err)
         }
@@ -48,14 +45,13 @@ const SnowboardContainer = () => {
     }
     const getSnows = async () => {
         try {
-            const snows = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/snowboard/', {
+            const snows = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
             const parsedSnows = await snows.json();
-            console.log(parsedSnows)
             setSnows(parsedSnows)
         } catch (err) {
             
@@ -71,7 +67,7 @@ const SnowboardContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if(parsedResponse.ok === true){
+            if(apiResponse.ok === true){
                 const newSnows = snows.map(snows => snows.id === idToUpdate ? snowsToUpdate : snows)
                 setSnows(newSnows)
             }else{

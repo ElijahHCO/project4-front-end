@@ -16,7 +16,7 @@ const LocationsContainer = () => {
             })
             const parsedResponse = await apiResponse.json()
             console.log(parsedResponse)
-            if (parsedResponse.ok === true) {
+            if (apiResponse.ok === true) {
                 setLocations([parsedResponse, ...locations])
             } else {
                 setNewLocationServerError(parsedResponse)
@@ -30,14 +30,12 @@ const LocationsContainer = () => {
             const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/locations/${idToDelete}`, {
                 method: "DELETE"
             })
-            const parsedResponse = await apiResponse.json()
-            if (parsedResponse.ok === true) {
+            if (apiResponse.ok === true) {
                 const newLocations = locations.filter(location => location.id !== idToDelete)
                 setLocations(newLocations)
             } else {
 
             }
-            console.log(parsedResponse)
         } catch (err) {
             console.log(err)
         }
@@ -48,7 +46,6 @@ const LocationsContainer = () => {
             const locations = await fetch('http://obscure-caverns-42640.herokuapp.com/locations/')
             const parsedLocations = await locations.json();
             setLocations(parsedLocations)
-            console.log(parsedLocations)
         } catch (err) {
             console.log(err)
         }
@@ -63,7 +60,7 @@ const LocationsContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json();
-            if (parsedResponse.ok === true) {
+            if (apiResponse.ok === true) {
                 const newLocations = locations.map(location => location.id === idToUpdate ? locationToUpdate : location)
                 setLocations(newLocations)
             } else {

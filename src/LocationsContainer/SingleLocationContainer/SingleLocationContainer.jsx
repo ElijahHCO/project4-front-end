@@ -26,8 +26,11 @@ const SingleLocationComponent = (props) => {
 
     return (
         <div className="index-single-item">
-            <h1>{props.location.name}</h1>
-            <h2>{props.location.address}</h2>
+            <h2>Store Location: <br /> 
+                {props.location.name}</h2>
+            <h3>Address: <br /> 
+                {props.location.address}</h3>
+            <h4>ID: {props.location.id}</h4>
             <button className="delete-edit-btn" onClick={() => {
                 props.deleteLocation(props.location.id)
             }}>Delete</button>

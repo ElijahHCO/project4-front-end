@@ -11,7 +11,8 @@ const SingleSnowboardComponent = (props) => {
         model: props.snows.model,
         quantity: props.snows.quantity,
         rented: props.snows.rented,
-        _id: props.snows._id 
+        location: props.snows.location,
+        id: props.snows.id 
     })
   
     const handleInputChange = (e) => {
@@ -22,7 +23,7 @@ const SingleSnowboardComponent = (props) => {
     }
     const submitUpdateSnow = (e) => {
         e.preventDefault();
-        props.updateSnow(props.snows._id, updateSnow)
+        props.updateSnow(props.snows.id, updateSnow)
         setShowing(false)
     }
 
@@ -46,6 +47,7 @@ const SingleSnowboardComponent = (props) => {
             :
             <p>Currently Rented: 0</p>
             }
+            <h5>Location: {props.snows.location}</h5>
             <button className="delete-edit-btn" onClick={() => {
                 props.deleteSnows(props.snows._id)
             }}>Delete</button>
@@ -60,6 +62,17 @@ const SingleSnowboardComponent = (props) => {
                             Model: <input onChange={handleInputChange} type="text" name="model" value={updateSnow.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSnow.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSnow.rented}/>
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={updateSnow.location}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

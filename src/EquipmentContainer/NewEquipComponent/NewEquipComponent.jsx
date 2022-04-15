@@ -67,7 +67,7 @@ const NewEquipComponent = (props) => {
                             Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
                             Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
-                            Location: <select onChange={handleInputChange} type="number" name="location" value={newEquip.quantity}>
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={newEquip.location}>
                                 <option></option> {props.locations.map((location)=>{
                                     return <option
                                     key={location.name}
@@ -85,7 +85,6 @@ const NewEquipComponent = (props) => {
 
                     <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
             }
-                    <h3>All Equipment</h3>
             
         </>
     )

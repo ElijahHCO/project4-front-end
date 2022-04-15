@@ -12,7 +12,8 @@ const SingleSkiComponent = (props) => {
         model: props.skis.model,
         quantity: props.skis.quantity,
         rented: props.skis.rented,
-        _id: props.skis._id
+        location: props.skis.location,
+        id: props.skis.id
     })
 
     const handleInputChange = (e) => {
@@ -23,7 +24,7 @@ const SingleSkiComponent = (props) => {
     }
     const submitUpdateSki = (e) => {
         e.preventDefault();
-        props.updateSki(props.skis._id, updateSki)
+        props.updateSki(props.skis.id, updateSki)
         setShowing(false)
     }
 
@@ -47,8 +48,9 @@ const SingleSkiComponent = (props) => {
                 :
                 <p>Currently Rented: 0</p>
             }
+            <h5>Location: {props.skis.location}</h5>
             <button className="delete-edit-btn" onClick={() => {
-                props.deleteSkis(props.skis._id)
+                props.deleteSkis(props.skis.id)
             }}>Delete</button>
             {
                 showing ?
@@ -62,6 +64,17 @@ const SingleSkiComponent = (props) => {
                             Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateSki.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSki.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSki.rented} />
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={updateSki.location}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

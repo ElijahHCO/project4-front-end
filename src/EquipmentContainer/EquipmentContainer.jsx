@@ -27,8 +27,6 @@ const EquipmentContainer = () => {
                 }
             })
             const parsedResponse = await apiResponse.json()
-            console.log(parsedResponse)
-            console.log(apiResponse)
             if (apiResponse.ok == true) {
                 setEquips([parsedResponse, ...equips])
             } else {
@@ -43,7 +41,6 @@ const EquipmentContainer = () => {
             const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
-            console.log(apiResponse, "apiResponse")
             if (apiResponse.ok === true) {
                 const newEquips = equips.filter(equip => equip.id !== idToDelete)
                 setEquips(newEquips)
@@ -60,7 +57,6 @@ const EquipmentContainer = () => {
             const equips = await fetch('http://obscure-caverns-42640.herokuapp.com/equipment/')
             const parsedEquips = await equips.json();
             setEquips(parsedEquips)
-            console.log(parsedEquips)
         } catch (err) {
             console.log(err)
         }

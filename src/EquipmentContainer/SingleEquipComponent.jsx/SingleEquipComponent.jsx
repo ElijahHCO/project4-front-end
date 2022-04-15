@@ -48,6 +48,7 @@ const SingleEquipComponent = (props) => {
                 :
                 <p>Currently Rented: 0</p>
             }
+            <h5> Location: {props.equip.location}</h5>
             <button className="delete-edit-btn" onClick={() => {
                 props.deleteEquip(props.equip.id)
             }}>Delete</button>
@@ -64,6 +65,7 @@ const SingleEquipComponent = (props) => {
                             Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateEquip.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateEquip.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateEquip.rented} />
+                            {/* Location: <input onChange={handleInputChange} type="number" name="location" value={updateEquip.location} /> */}
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

@@ -62,7 +62,6 @@ const NewLocationComponent = (props) => {
 
                     <button onClick={toggleShowing} className="add-equip-btn">Add Location</button>
             }
-                    <h3>All Locations</h3>
             
         </>
     )
