@@ -12,6 +12,7 @@ const SingleEquipComponent = (props) => {
         model: props.equip.model,
         quantity: props.equip.quantity,
         rented: props.equip.rented,
+        location: props.equip.location,
         id: props.equip.id
     })
 

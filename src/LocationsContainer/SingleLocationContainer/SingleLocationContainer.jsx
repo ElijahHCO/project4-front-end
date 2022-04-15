@@ -42,7 +42,7 @@ const SingleLocationComponent = (props) => {
                         </div>
                         <form className="form" onSubmit={(e)=>submitUpdateLocation(e)}>
                             {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
-                            Name: <input onChange={handleInputChange} type="text" name="name" value={updateLocation.name} />
+                            City: <input onChange={handleInputChange} type="text" name="name" value={updateLocation.name} />
                             Address: <input onChange={handleInputChange} type="text" name="address" value={updateLocation.address} />
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
