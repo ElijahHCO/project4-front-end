@@ -54,7 +54,7 @@ const EquipmentContainer = () => {
     }
     const getEquips = async () => {
         try {
-            const equips = await fetch('http://obscure-caverns-42640.herokuapp.com/equipment/')
+            const equips = await fetch('https://obscure-caverns-42640.herokuapp.com/equipment/')
             const parsedEquips = await equips.json();
             setEquips(parsedEquips)
         } catch (err) {
