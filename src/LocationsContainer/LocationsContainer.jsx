@@ -7,7 +7,7 @@ const LocationsContainer = () => {
     const [newLocationServerError, setNewLocationServerError] = useState("")
     const createNewLocation = async (newLocation) => {
         try {
-            const apiResponse = await fetch("http://obscure-caverns-42640.herokuapp.com/locations/", {
+            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/locations/", {
                 method: "POST",
                 body: JSON.stringify(newLocation),
                 headers: {
@@ -27,7 +27,7 @@ const LocationsContainer = () => {
     }
     const deleteLocation = async (idToDelete) => {
         try {
-            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/locations/${idToDelete}`, {
+            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/locations/${idToDelete}`, {
                 method: "DELETE"
             })
             if (apiResponse.ok === true) {
@@ -43,7 +43,7 @@ const LocationsContainer = () => {
     }
     const getLocations = async () => {
         try {
-            const locations = await fetch('http://obscure-caverns-42640.herokuapp.com/locations/')
+            const locations = await fetch('https://obscure-caverns-42640.herokuapp.com/locations/')
             const parsedLocations = await locations.json();
             setLocations(parsedLocations)
         } catch (err) {
@@ -52,7 +52,7 @@ const LocationsContainer = () => {
     }
     const updateLocation = async (idToUpdate, locationToUpdate) => {
         try {
-            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/locations/${idToUpdate}`, {
+            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/locations/${idToUpdate}`, {
                 method: "PUT",
                 body: JSON.stringify(locationToUpdate),
                 headers: {

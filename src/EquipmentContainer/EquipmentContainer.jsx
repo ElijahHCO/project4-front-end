@@ -9,7 +9,7 @@ const EquipmentContainer = () => {
     const [newEquipServerError, setNewEquipServerError] = useState("")
     const getLocations = async () => {
         try {
-            const locations = await fetch('http://obscure-caverns-42640.herokuapp.com/locations/')
+            const locations = await fetch('https://obscure-caverns-42640.herokuapp.com/locations/')
             const parsedLocations = await locations.json();
             setLocations(parsedLocations)
             console.log(parsedLocations)
@@ -19,7 +19,7 @@ const EquipmentContainer = () => {
     }
     const createNewEquip = async (newEquip) => {
         try {
-            const apiResponse = await fetch("http://obscure-caverns-42640.herokuapp.com/equipment/", {
+            const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment/", {
                 method: "POST",
                 body: JSON.stringify(newEquip),
                 headers: {
@@ -38,7 +38,7 @@ const EquipmentContainer = () => {
     }
     const deleteEquip = async (idToDelete) => {
         try {
-            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
+            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToDelete}`, {
                 method: "DELETE"
             })
             if (apiResponse.ok === true) {
@@ -63,7 +63,7 @@ const EquipmentContainer = () => {
     }
     const updateEquip = async (idToUpdate, equipToUpdate) => {
         try {
-            const apiResponse = await fetch(`http://obscure-caverns-42640.herokuapp.com/equipment/${idToUpdate}`, {
+            const apiResponse = await fetch(`https://obscure-caverns-42640.herokuapp.com/equipment/${idToUpdate}`, {
                 method: "PUT",
                 body: JSON.stringify(equipToUpdate),
                 headers: {

@@ -24,7 +24,6 @@ const NewSnowboardComponent = (props) => {
     const submitNewSnow = (e) => {
         e.preventDefault()
         props.createNewSnow(newSnow)
-        console.log("working", props.createNewSnow)
         setNewSnow({
             type: "Snowboard",
             brand: "",
@@ -54,6 +53,17 @@ const NewSnowboardComponent = (props) => {
                             Brand: <input onChange={handleInputChange} required min="2" type="text" name="brand" value={newSnow.brand} />
                             Model: <input onChange={handleInputChange} required min="2" type="text" name="model" value={newSnow.model} />
                             Quantity: <input onChange={handleInputChange} required type="number" name="quantity" value={newSnow.quantity} />
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={newSnow.location}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

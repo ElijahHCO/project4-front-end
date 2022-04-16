@@ -24,7 +24,6 @@ const NewSkiComponent = (props) => {
     const submitNewSki = (e) => {
         e.preventDefault()
         props.createNewSki(newSki)
-        console.log("working", props.createNewSki)
         setNewSki({
             type: "Ski",
             brand: "",
@@ -55,6 +54,17 @@ const NewSkiComponent = (props) => {
                             Brand: <input onChange={handleInputChange} required min="2" type="text" name="brand" value={newSki.brand} />
                             Model: <input onChange={handleInputChange} required min="2" type="text" name="model" value={newSki.model} />
                             Quantity: <input onChange={handleInputChange} required type="number" name="quantity" value={newSki.quantity} />
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={newSki.location}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

@@ -5,6 +5,17 @@ import SingleSnowboardComponent from './SingleSnowComponent.jsx/SingleSnowCompon
 const SnowboardContainer = () => {
     const [snows, setSnows] = useState([])
     const [newSnowServerError, setNewSnowServerError] = useState("")
+    const [locations, setLocations] = useState([])
+    const getLocations = async () => {
+        try {
+            const locations = await fetch('https://obscure-caverns-42640.herokuapp.com/locations/')
+            const parsedLocations = await locations.json();
+            setLocations(parsedLocations)
+            console.log(parsedLocations)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     const createNewSnow = async (newSnow) => {
         try{
             const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment/", {
@@ -52,7 +63,8 @@ const SnowboardContainer = () => {
                 }
             })
             const parsedSnows = await snows.json();
-            setSnows(parsedSnows)
+            const filteredSnows = parsedSnows.filter(item => item.type == "Snowboard")
+            setSnows(filteredSnows)
         } catch (err) {
             
         }
@@ -78,7 +90,8 @@ const SnowboardContainer = () => {
         }
     }
     useEffect(()=>{
-        getSnows()
+        getSnows();
+        getLocations();
     }, [])
     return (
         <div key={"key"}>
@@ -86,7 +99,7 @@ const SnowboardContainer = () => {
             <div className="display-div">
             <NewSnowboardComponent
                 newSnowServerError={newSnowServerError}
-                createNewSnow={createNewSnow}></NewSnowboardComponent>
+                createNewSnow={createNewSnow} locations={locations}></NewSnowboardComponent>
             {snows.map((snows) => {
                 return <SingleSnowboardComponent key={snows.id} snows={snows} deleteSnows={deleteSnows} updateSnow={updateSnow}></SingleSnowboardComponent>
             })}

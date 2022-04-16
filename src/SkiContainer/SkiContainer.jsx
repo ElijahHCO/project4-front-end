@@ -5,6 +5,17 @@ import SingleSkiComponent from './SingleSkiComponent.jsx/SingleSkiComponent';
 const SkiContainer = () => {
     const [skis, setSkis] = useState([])
     const [newSkiServerError, setNewSkiServerError] = useState("")
+    const [locations, setLocations] = useState([])
+    const getLocations = async () => {
+        try {
+            const locations = await fetch('https://obscure-caverns-42640.herokuapp.com/locations/')
+            const parsedLocations = await locations.json();
+            setLocations(parsedLocations)
+            console.log(parsedLocations)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     const createNewSki = async (newSki) => {
         try{
             const apiResponse = await fetch("https://obscure-caverns-42640.herokuapp.com/equipment/", {
@@ -18,7 +29,6 @@ const SkiContainer = () => {
             const newSkis = parsedResponse
             if (apiResponse.ok === true) {
                 setSkis([newSkis, ...skis])
-                console.log(skis)
             } else {
                 setNewSkiServerError(parsedResponse)
                 console.log(parsedResponse)
@@ -53,7 +63,8 @@ const SkiContainer = () => {
             })
             const parsedSkis = await skis.json();
             console.log(parsedSkis)
-            setSkis(parsedSkis)
+            const filteredSkis = parsedSkis.filter(item => item.type == "Ski")
+            setSkis(filteredSkis)
         } catch (err) {
             
         }
@@ -79,7 +90,8 @@ const SkiContainer = () => {
         }
     }
     useEffect(()=>{
-        getSkis()
+        getSkis();
+        getLocations();
     }, [])
     return (
         <div key={"key"}>
@@ -87,7 +99,7 @@ const SkiContainer = () => {
             <div className="display-div">
             <NewSkiComponent
                 newSkiServerError={newSkiServerError}
-                createNewSki={createNewSki}></NewSkiComponent>
+                createNewSki={createNewSki} locations={locations}></NewSkiComponent>
             {skis.map((skis) => {
                 return <SingleSkiComponent key={skis.id} skis={skis} deleteSkis={deleteSkis} updateSki={updateSki}></SingleSkiComponent>
             })}
