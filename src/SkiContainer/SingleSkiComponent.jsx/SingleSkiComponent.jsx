@@ -64,7 +64,7 @@ const SingleSkiComponent = (props) => {
                             Model: <input onChange={handleInputChange} type="text" name="productModel" value={updateSki.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSki.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSki.rented} />
-                            Location: <select onChange={handleInputChange} type="number" name="location" value={updateSki.location}>
+                            {/* Location: <select onChange={handleInputChange} type="number" name="location" value={updateSki.location}>
                                 <option></option> {props.locations.map((location)=>{
                                     return <option
                                     key={location.name}
@@ -74,7 +74,7 @@ const SingleSkiComponent = (props) => {
                                     </option>
                                 })
                             }
-                                </select>
+                                </select> */}
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>

@@ -51,42 +51,42 @@ const NewEquipComponent = (props) => {
         }
     }
     console.log(props.locations, "locations")
-    // return (
-    //     <>
-    //         {
-    //             showing
-    //                 ?
-    //                 <div id="new-item-form">
-    //                     <div className="btn-div">
-    //                         <button className="x-btn" onClick={toggleShowing}>X</button>
-    //                     </div>
-    //                     <form className="form" onSubmit={submitNewEquip}>
-    //                         {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
-    //                         {props.NewItemServerError ? <p className="form-error">{props.newItemServerError}</p> : null}
-    //                         Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
-    //                         Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
-    //                         Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
-    //                         Location: <select onChange={handleInputChange} type="number" name="location" value={newEquip.location}>
-    //                             <option></option> {props.locations.map((location)=>{
-    //                                 return <option
-    //                                 key={location.name}
-    //                                 value={location.id}
-    //                                 >
-    //                                     {location.name}
-    //                                 </option>
-    //                             })
-    //                         }
-    //                             </select>
-    //                         <button className="delete-edit-btn" type="submit">Submit</button>
-    //                     </form>
-    //                 </div>
-    //                 :
-
-    //                 <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
-    //         }
+    return (
+        <>
+            {
+                showing
+                    ?
+                    <div id="new-item-form">
+                        <div className="btn-div">
+                            <button className="x-btn" onClick={toggleShowing}>X</button>
+                        </div>
+                        <form className="form" onSubmit={submitNewEquip}>
+                            {isValidState.valid ? null : <p className="form-error">{isValidState.message}</p>}
+                            {props.NewItemServerError ? <p className="form-error">{props.newItemServerError}</p> : null}
+                            Brand: <input onChange={handleInputChange} type="text" name="brand" value={newEquip.brand} />
+                            Model: <input onChange={handleInputChange} type="text" name="model" value={newEquip.model} />
+                            Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={newEquip.quantity} />
+                            Location: <select onChange={handleInputChange} type="number" name="location" value={newEquip.location}>
+                                <option></option> {props.locations.map((location)=>{
+                                    return <option
+                                    key={location.name}
+                                    value={location.id}
+                                    >
+                                        {location.name}
+                                    </option>
+                                })
+                            }
+                                </select>
+                            <button className="delete-edit-btn" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    :
+                            null
+                    // <button onClick={toggleShowing} className="add-equip-btn">Add Equipment</button>
+            }
             
-    //     </>
-    // )
+        </>
+    )
 }
 
 export default NewEquipComponent

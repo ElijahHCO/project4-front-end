@@ -62,7 +62,7 @@ const SingleSnowboardComponent = (props) => {
                             Model: <input onChange={handleInputChange} type="text" name="model" value={updateSnow.model} />
                             Quantity: <input onChange={handleInputChange} type="number" name="quantity" value={updateSnow.quantity} />
                             Rented: <input onChange={handleInputChange} type="number" name="rented" value={updateSnow.rented}/>
-                            Location: <select onChange={handleInputChange} type="number" name="location" value={updateSnow.location}>
+                            {/* Location: <select onChange={handleInputChange} type="number" name="location" value={updateSnow.location}>
                                 <option></option> {props.locations.map((location)=>{
                                     return <option
                                     key={location.name}
@@ -72,7 +72,7 @@ const SingleSnowboardComponent = (props) => {
                                     </option>
                                 })
                             }
-                                </select>
+                                </select> */}
                             <button className="delete-edit-btn" type="submit">Submit</button>
                         </form>
                     </div>
